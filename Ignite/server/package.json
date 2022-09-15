@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "build/server.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "dev": "tsnd --exit-child src/server.ts"

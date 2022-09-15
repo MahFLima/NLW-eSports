@@ -1,4 +1,11 @@
 -- CreateTable
+CREATE TABLE "Game" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "title" TEXT NOT NULL,
+    "bannerUrl" TEXT NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "Ad" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "gameId" TEXT NOT NULL,
