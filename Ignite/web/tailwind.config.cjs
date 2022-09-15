@@ -12,7 +12,9 @@ module.exports = {
         'game-gradient': 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0, 0.9) 67.08%)',
       },
       colors:{
-        
+        violet:{
+          500: "#9147FF",
+        },
         gray:{
           800: "#2A2634",
           900: "#121414",
