@@ -1,19 +1,25 @@
 import { useState } from "react";
 
-type Props = {
-  srcImg: string;
+interface Props{
+  title: string;
+  ads: number;
+  bannerUrl: string;
 }
 
-export function Card({srcImg}: Props){
+export function Card({title, ads, bannerUrl}: Props){
   return(
   <a href="#" className="relative rounded-lg overflow-hidden">
-    <img src={srcImg} alt="" />
+    <img src={bannerUrl} alt="" />
 
     <div className="w-full pt-16 pb-4 px-4 bg-game-gradient absolute bottom-0 right-0 left-0">
       <strong className="font-bold text-white block">
-        League of Legends
+        {title}
       </strong>
-      <span className="block text-zinc-300 text-sm">4 anuncios</span>
+      {ads == 0 ? 
+        (<span className="block text-zinc-300 text-sm">sem anuncios</span>) : 
+          ads == 1 ? ((<span className="block text-zinc-300 text-sm">{ads} anuncio</span>)) : 
+          (<span className="block text-zinc-300 text-sm">{ads} anuncios</span>)
+      }
     </div>
 
   </a>
