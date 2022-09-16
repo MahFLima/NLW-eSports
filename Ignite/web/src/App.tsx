@@ -22,15 +22,17 @@ interface gameProps {
 function App() {
   const cards = ["/game1.png", "/game2.png", "/game3.png", "/game4.png", "/game5.png", "/game6.png"]
   const weekDays = [
-    {title: "Domingo", short: "Dom", },
-    {title: "Segunda", short: "Seg", },
-    {title: "Terça", short: "Ter", },
-    {title: "Quarta", short: "Qua", },
-    {title: "Quinta", short: "Qui", },
-    {title: "Sexta", short: "Sex", },
-    {title: "Sabado", short: "Sab", },
+    { title: "Domingo", short: "Dom", },
+    { title: "Segunda", short: "Seg", },
+    { title: "Terça", short: "Ter", },
+    { title: "Quarta", short: "Qua", },
+    { title: "Quinta", short: "Qui", },
+    { title: "Sexta", short: "Sex", },
+    { title: "Sabado", short: "Sab", },
   ]
   const [games, setGames] = useState<gameProps[]>([])
+  const [searchInput, setSearchInput] = useState("")
+  const listSearch = searchInput.length > 0 ? games.filter(item => item.title.toLowerCase().includes(searchInput.toLowerCase())) : []
 
   useEffect(() => {
     fetch('http://localhost:3333/games')
@@ -38,6 +40,8 @@ function App() {
       .then(data => {
         setGames(data)
       })
+
+
   }, [])
 
   return (
@@ -48,17 +52,37 @@ function App() {
         está aqui
       </h1>
 
-      <div className="grid grid-cols-6 gap-6 mt-20">
-        {games.map(item => {
-          return (
-            <Card
-              key={item.id}
-              title={item.title}
-              bannerUrl={item.bannerUrl}
-              ads={item._count.ads}
-            />
-          )
-        })}
+      <input 
+        className="mt-8 w-96 p-4 border-none bg-gray-800 text-white" 
+        type="text" placeholder="pesquisar"  
+        onChange={(e) => { setSearchInput(e.target?.value) }} 
+      />
+
+      <div className="flex justify-center flex-wrap gap-6 mt-20">
+        {searchInput ? (
+          listSearch.map(item => {
+            return (
+              <Card
+                key={item.id}
+                title={item.title}
+                bannerUrl={item.bannerUrl}
+                ads={item._count.ads}
+              />
+            )
+          })
+        ) : (
+          games.map(item => {
+            return (
+              <Card
+                key={item.id}
+                title={item.title}
+                bannerUrl={item.bannerUrl}
+                ads={item._count.ads}
+              />
+            )
+          })
+        )}
+
 
       </div>
       <Dialog.Root>
@@ -99,8 +123,8 @@ function App() {
 
                     <div className="grid grid-cols-4 gap-2">
                       {weekDays.map((item, index) => {
-                        return(
-                          <ButtonWeek title={item.title} short={item.short}/>
+                        return (
+                          <ButtonWeek key={index} title={item.title} short={item.short} />
                         )
                       })}
                     </div>

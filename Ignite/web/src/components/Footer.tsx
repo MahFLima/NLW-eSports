@@ -4,7 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 
 export function Footer() {
   return (
-    <div className="pt-1 bg-nlw-gradient self-stretch rounded-lg mt-8 overflow-hidden">
+    <div className="pt-1 bg-nlw-gradient self-stretch rounded-lg mt-8 overflow-hidden ">
       <div className="bg-gray-800 px-8 py-6 flex justify-between items-center">
         <div>
           <strong className="text-2xl text-white font-black block">Não encontrou seu duo?</strong>
