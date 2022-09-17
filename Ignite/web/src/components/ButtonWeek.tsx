@@ -1,16 +1,21 @@
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
+
+type Props = {
+  value: string
   title: string,
   short: string,
+  style: string
 } 
 
-export function ButtonWeek({title,short, ...rest}: Props) {
+export function ButtonWeek({title,short,value,style, ...rest}: Props) {
   return (
-    <button
+    <ToggleGroup.Item
+      value={value}
       title={title}
-      className="w-10 h-10 rounded bg-zinc-900 text-sm"
+      className={style}
       {...rest}
     >
       {short}
-    </button>
+    </ToggleGroup.Item>
   )
 }
