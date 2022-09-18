@@ -1,3 +1,5 @@
+import {useRef, useEffect} from 'react';
+
 import {
   useFonts,
   Inter_400Regular,
@@ -5,12 +7,15 @@ import {
   Inter_700Bold,
   Inter_900Black
 } from '@expo-google-fonts/inter';
+import { Subscription } from 'expo-modules-core'
 
 import { StatusBar } from 'react-native';
 import { Background } from './src/components/Background';
 import { Loading } from './src/components/Loading';
+
 import { Routes } from './src/routes';
-import { Home } from './src/screens/Home';
+import { getPushNotificationToken } from './src/sevices/getPushNotificationToken'
+
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,6 +28,13 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   }
+
+  const getNotificationListener = useRef<Subscription>()
+  const responseNotificationListener = useRef<Subscription>()
+  
+  useEffect(() => {
+    getPushNotificationToken()
+  },[])
 
   return (
     <Background>
